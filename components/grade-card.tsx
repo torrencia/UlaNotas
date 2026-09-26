@@ -1,10 +1,10 @@
 import { CheckCircle2, XCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { PASSING_GRADE, type Grade } from "@/lib/grades-data"
+import { isPassingGrade, type Grade } from "@/lib/grades-data"
 
 export function GradeCard({ grade }: { grade: Grade }) {
-  const approved = grade.nota >= PASSING_GRADE
-
+  const approved = isPassingGrade(grade.nota)
+  
   return (
     <>
       <div
