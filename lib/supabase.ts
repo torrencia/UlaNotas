@@ -50,15 +50,12 @@ export async function verifySupabaseConnection() {
         const { data, error } = await supabase.from("students").select("id").limit(1)
 
         if (error) {
-            console.error("[Supabase] Error de conexión:", error.message)
             return { ok: false, error: error.message, data: null }
         }
 
-        console.log("[Supabase] Conexión correcta.")
         return { ok: true, error: null, data }
     } catch (error) {
         const message = error instanceof Error ? error.message : "Error desconocido al verificar la conexión."
-        console.error("[Supabase] Error inesperado:", message)
         return { ok: false, error: message, data: null }
     }
 }
@@ -82,8 +79,6 @@ export async function getStudentByCedula(cedula: string) {
         const error =
             "Falta configurar NEXT_PUBLIC_SUPABASE_URL y la clave pública de Supabase en el archivo .env."
 
-        console.error("[Supabase]", error)
-
         return {
             data: null,
             error,
@@ -91,10 +86,6 @@ export async function getStudentByCedula(cedula: string) {
     }
 
     const candidates = normalizeCedulaCandidates(cedula)
-    console.log("[Supabase] Buscando cédula:", {
-        raw: cedula,
-        candidates,
-    })
 
     try {
         for (const candidate of candidates) {
@@ -126,15 +117,7 @@ export async function getStudentByCedula(cedula: string) {
                 .eq("cedula", candidate)
                 .maybeSingle()
 
-            console.log("[Supabase] Query exacta:", {
-                candidate,
-                data,
-                error: error?.message ?? null,
-                sqlEquivalent: `SELECT s.id, s.cedula, s.full_name, e.id, e.evaluation_type, e.status, e.final_grade, ex.id, ex.exercise_number, ex.score, err.id, err.error_title, err.error_description FROM students s LEFT JOIN evaluations e ON s.id = e.student_id LEFT JOIN exercises ex ON e.id = ex.evaluation_id LEFT JOIN exercise_errors err ON ex.id = err.exercise_id WHERE s.cedula = '${candidate}'`,
-            })
-
             if (error) {
-                console.error("[Supabase] Error al buscar la cédula:", error.message)
                 return {
                     data: null,
                     error: error.message,
@@ -149,14 +132,12 @@ export async function getStudentByCedula(cedula: string) {
             }
         }
 
-        console.log("[Supabase] No se encontró ninguna coincidencia para:", candidates)
         return {
             data: null,
             error: null,
         }
     } catch (error) {
         const message = error instanceof Error ? error.message : "Error desconocido al consultar la base de datos."
-        console.error("[Supabase] Error al ejecutar consulta:", message)
         return {
             data: null,
             error: message,
