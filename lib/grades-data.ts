@@ -1,5 +1,9 @@
 export const PASSING_GRADE = 10
 
+export function isPassingGrade(grade: number): boolean {
+  return Number(grade) >= PASSING_GRADE
+}
+
 export type EvaluationKey = "parcial1" | "parcial2" | "parcial3" | "proyecto"
 
 export type ExerciseError = {
