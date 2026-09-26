@@ -27,7 +27,7 @@ function mapStudentFromSupabase(student: StudentFromSupabase): Student {
   const mapped: Student = {
     cedula: student.cedula,
     nombre: student.full_name ?? student.nombre ?? "Estudiante",
-    carrera: "Ingeniería de Software",
+    carrera: "Ingeniería de Sistemas",
     evaluaciones: {},
   }
 
@@ -228,7 +228,7 @@ export function GradeLookup() {
         <div className="mx-auto mb-3 flex size-16 items-center justify-center rounded-2xl bg-slate-800 text-slate-100 shadow-sm ring-1 ring-slate-700">
           <GraduationCap className="size-8" aria-hidden />
         </div>
-        <CardTitle className="text-3xl tracking-tight text-slate-100 sm:text-[2rem]">Notas programación</CardTitle>
+        <CardTitle className="text-3xl tracking-tight text-slate-100 sm:text-[2rem]">Notas de Programación 1</CardTitle>
       </CardHeader>
       <CardContent className="px-5 pb-6 sm:px-7 sm:pb-7">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
@@ -279,7 +279,7 @@ export function GradeLookup() {
           </Button>
 
           <p className="text-center text-xs text-slate-400 sm:text-sm">
-            Cédulas de ejemplo: 12345678
+            Semestre B-2026
           </p>
         </form>
       </CardContent>

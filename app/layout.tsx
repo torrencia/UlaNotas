@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Notas Programación 1',
+  title: 'Notas de Programación 1',
   description: 'Consulta tus calificaciones académicas ingresando tu número de cédula.',
   generator: 'v0.app',
   icons: {
